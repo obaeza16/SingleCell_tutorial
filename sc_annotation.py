@@ -558,4 +558,42 @@ sc.pl.umap(adata, color="transf_cell_type_certain", frameon=False)
 sc.pl.umap(adata, color="transf_cell_type_certain", groups="Unknown")
 
 # Now we will check to what extend does the automatic annotation match the
-# manually annotated cells above
+# manually annotated cells above, but only for some of them
+cell_types_to_check = [
+    "CD14+ Mono",
+    "cDC2",
+    "NK",
+    "B1 B",
+    "CD4+ T activated",
+    "T naive",
+    "MK/E prog",
+]
+# Plot the two annotations together
+sc.pl.dotplot(
+    adata,
+    var_names={
+        ct: marker_genes_in_data[ct] for ct in cell_types_to_check
+    },  # gene names grouped by cell type in a dictionary
+    groupby="transf_cell_type_certain",
+    standard_scale="var",  # normalize gene scores from 0 to 1
+)
+
+# We can see the marker groups are generally most highly expressed in the 
+# cells annotated with the matching label. This means these labels are likely
+# (at least partially) correct!
+
+# We now map the UMAP with uncertainty data
+sc.pl.umap(
+    adata, color=["transf_cell_type_unc", "transf_cell_type_certain"], frameon=False
+)
+
+# Like with any of the methods discussed in this notebook, the quality of the transferred
+# annotations depends on the quality of the “training data” (in this case the reference)
+# and its annotations, the quality of the model, and the match of your own data with the
+# training data!
+
+# The quality of the transferred annotations should therefore always be validated with 
+# manual inspection using marker gene expression and refinement of the initial annotations 
+# might be needed.
+
+# adata.write("./annotation_adata_out.h5ad")
