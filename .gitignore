@@ -1,0 +1,6 @@
+# Files related to R and RStudio
+*.Rhistory
+*.Rproj*
+
+# H5AD objects
+*.h5ad
