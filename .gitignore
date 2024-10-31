@@ -4,3 +4,7 @@
 
 # H5AD objects
 *.h5ad
+.Rproj.user
+
+# Files related to VSCode
+.vscode
