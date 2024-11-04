@@ -318,3 +318,13 @@ for k, v in metrics_scaled[["Batch", "Bio"]].iterrows():
 # lowest scores for both batch removal and biological conservation. The other three
 # methods have similar batch correction scores with scANVI scoring highest for 
 # biological conservation followed by scVI and Seurat.
+
+# To get an overall score for each method we can combine the two summary scores. 
+# The scIB paper suggests a weighting of 40% batch correction and 60% biological 
+# conservation but you may prefer to weight things differently depending on the 
+# priorities for your dataset.
+
+metrics_scaled["Overall"] = 0.4 * metrics_scaled["Batch"] + 0.6 * metrics_scaled["Bio"]
+metrics_scaled.style.background_gradient(cmap="Blues")
+# Let’s make a quick bar chart to visualise the overall performance.
+metrics_scaled.plot.bar(y="Overall")
