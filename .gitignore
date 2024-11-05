@@ -8,3 +8,6 @@
 
 # Files related to VSCode
 .vscode
+
+# Files related to Lineage
+KPTracer*
