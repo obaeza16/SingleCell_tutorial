@@ -13,3 +13,18 @@
 # et al., 2005] is the most comprehensive database consisting of 9 collections 
 # of gene sets. 
 
+# Case study: Pathway enrichment analysis and activity level scoring in human 
+# PBMC single cells
+
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+
+import scanpy as sc
+import anndata as ad
+import decoupler
+import seaborn.objects as so
+
+import session_info
+
