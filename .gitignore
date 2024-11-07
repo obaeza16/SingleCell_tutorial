@@ -11,3 +11,6 @@
 
 # Files related to Lineage
 KPTracer*
+
+# Files related to GSE
+*.gmt
